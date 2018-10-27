@@ -1,23 +1,24 @@
-function produceDrivingRange(blockRange){
+function produceDrivingRange(range){
   return function(start, end){
-    const tripStart = start.replace('th', '')
-    const tripEnd = end.replace('th', '')
-    const tripLength = Math.abs(tripStart - tripEnd)
-    if (tripLength <= blockRange){
-      return `within range by ${blockRange - tripLength}`
+    const startTrip = start.replace(`th`,``)
+    const endTrip = end.replace(`th`, ``)
+    const tripLenght = Math.abs(startTrip - endTrip)
+    if (tripLenght <= range){
+      return `within range by ${Math.abs(tripLenght - range)}`
     } else {
-      return `${tripLength - blockRange} blocks out of range`
+      return `${Math.abs(tripLenght - range)} blocks out of range`
     }
   }
-}
+};
 
-function produceTipCalculator(percent){
-  return function(bill){
-    return bill * percent
+
+function produceTipCalculator(float){
+  return function(fare){
+    return fare * float
   }
-}
+};
 
-function createDriver(){
+function createDriver() {
   let driverId = 0
   return class {
     constructor(name){
@@ -25,4 +26,4 @@ function createDriver(){
       this.name = name
     }
   }
-}
+};
